@@ -1,0 +1,56 @@
+DNN_model
+
+Environment
+
+
+- mode : Base
+
+
+- State : [cursor_x, cursor_y, target_x, target_y]
+
+
+- reward 
+
+ 1) if cursor ~ target distance > 1
+
+  - reward : 0 
+  
+  - done : True 
+
+ 2) if cursor ~ target distance < 1 and cursor not in target:
+
+  - reward : 1 / distance
+ 
+  - done : False
+
+ 3) if cursor in target:
+
+  - reward : 20
+
+if frame > 900:
+
+  - done : True
+
+ Max reward < 18000 ( 30 * 30 * 20 )
+
+ Min reward > 0 ( cursor ~ target distance > 1 )
+
+
+- Action
+
+ : discrete 9 actions.
+
+ - [1, 0 ~ 7 * 45]
+
+ - Noop: [0, 0]
+
+
+- Epsilon 
+
+ : 8 % -> 1 % .
+
+ : 0.8 - 0.01 * (n_epi / 500)
+
+ : After 500 episodes, epsilon decreases 1%.
+
+
